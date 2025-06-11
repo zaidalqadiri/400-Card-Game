@@ -32,6 +32,20 @@ class Player:
         self.__score = 0
         self.__tricks = 0
         self.__team = None
+    
+    def make_bid(self, amount):
+        if amount < 2:
+            print("The minimum bid is 2")
+        elif amount == 2 and self.__score >= 30:
+            print("The minimum bid for a score of 30 and above is 3")
+        elif amount == 3 and self.__score >= 40:
+            print("The minimum bid for a score of 40 and above is 4")
+        else:
+            self.__bid = amount
+            return self.__bid
+    
+    def play_card(self, card):
+        pass
 
 class Team:
     _team_count = 0
