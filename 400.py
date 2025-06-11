@@ -24,8 +24,31 @@ class Deck:
     def deal(player):
         pass
 
+class Player:
+    def __init__(self, name):
+        self.__name = name
+        self.__cards = []
+        self.__bid = None
+        self.__score = 0
+        self.__tricks = 0
+        self.__team = None
 
+class Team:
+    _team_count = 0
+
+    def __init__(self):
+        self.__players = []
+        Team._team_count += 1
+        self.__team_id = Team._team_count
     
+    def add_members(self, player1, player2):
+        if len(self.__players) < 2:
+            self.__players.append(player1, player2)
+        else:
+            print("This team is already full")
+    
+    def get_team_info(self):
+        return f"Team {self.__team_id}: {self.__players[0]} and {self.__players[1]}"
 
 
     
