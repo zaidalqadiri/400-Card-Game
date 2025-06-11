@@ -15,14 +15,17 @@ class Deck:
 
         self.__deck = []
 
-        for suit in suit:
+        for suit in suits:
             for rank in ranks:
                 self.__deck.append(Card(suit, rank))
 
         random.shuffle(self.__deck)
+
+    def shuffle(self):
+        random.shuffle(self.__deck)
     
-    def deal(player):
-        pass
+    def draw_card(self):
+        return self.__deck.pop()
 
 class Player:
     def __init__(self, name):
@@ -32,6 +35,9 @@ class Player:
         self.__score = 0
         self.__tricks = 0
         self.__team = None
+
+    def set_hand(self, cards):
+        self.__cards = cards
     
     def make_bid(self, amount):
         if amount < 2:
@@ -47,6 +53,9 @@ class Player:
     def play_card(self, card):
         pass
 
+    def get_name(self):
+        return self.__name
+
 class Team:
     _team_count = 0
 
@@ -56,7 +65,7 @@ class Team:
         self.__team_id = Team._team_count
     
     def get_team_info(self):
-        return f"Team {self.__team_id}: {self.__players[0]} and {self.__players[1]}"
+        return f"Team {self.__team_id}: {self.__players[0].get_name()} and {self.__players[1].get_name()}"
 
 class Game:
 
@@ -64,11 +73,15 @@ class Game:
 
     def __init__(self, player1, player2, player3, player4, team1, team2):
         self.__players = [player1, player2, player3, player4]
-        self.__deck = Deck().__deck
         self.__teams = [team1, team2]
+        self.__deck = Deck()
 
-    def start_game():
-        pass
+    def start_game(self):
+        for player in self.__players:
+            cards = []
+            for i in range(13):
+                cards.append(self.__deck.draw_card())
+            player.set_hand(cards)
     
     def bid_phase():
         pass
