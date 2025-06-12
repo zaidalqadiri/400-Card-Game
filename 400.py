@@ -5,6 +5,9 @@ class Card:
         self.__suit = suit
         self.__rank = rank
 
+    def get_suit(self):
+        return self.__suit
+
     def __str__(self):
         return f"{self.__rank} of {self.__suit}"
     
@@ -59,20 +62,27 @@ class Player:
                 self.__bid = user_input
                 break
     
-    def play_card(self):
+    def play_card(self, required_suit = None):
         while True:
             user_input = str(input(f"{self.get_name()}'s trun. play a card (e.g. 3 of Spade) or 'r' to reveal your cards: "))
             if user_input == 'r':
                 print("")
                 print(self.show_hand())
                 continue
+
             for card in self.__cards:
                 if str(card).lower() == user_input.lower():
+                    if required_suit and card.get_suit() != required_suit and self.has_suit(required_suit):
+                        print(f"You must play a {required_suit} if you have one.")
+                        return self.play_card(required_suit)  # retry
                     self.__cards.remove(card)
                     return card
 
     def get_name(self):
         return self.__name
+    
+    def has_suit(self, suit):
+        return any(card.get_suit() == suit for card in self.__cards)
 
 class Team:
     _team_count = 0
@@ -87,7 +97,7 @@ class Team:
 
 class Game:
 
-    _current_round = 0
+    __current_round = 0
 
     def __init__(self, player1, player2, player3, player4, team1, team2):
         self.__players = [player1, player2, player3, player4]
@@ -112,8 +122,25 @@ class Game:
 
 
     def play_round(self):
-        print(f"\n{self.__players[0].play_card()} played by {self.__players[0].get_name()}\n")
-        
+        print(f"\n --- Round {self.__current_round + 1} ---\n")
+
+        order = self.__players[self.__starting_index:] + self.__players[:self.__starting_index]
+        cards_played = []
+
+        # First player plays
+        lead_card = order[0].play_card()
+        lead_suit = lead_card.get_suit()
+        cards_played.append((order[0], lead_card))
+        print(f"{lead_card} played by {order[0].get_name()}")
+
+         # Rest of the players
+        for player in order[1:]:
+            card = player.play_card(required_suit=lead_suit)
+            cards_played.append((player, card))
+            print(f"{card} played by {player.get_name()}")
+
+        self._current_round += 1
+        self.__starting_index = (self.__starting_index + 1) % 4  # Rotate starter for next round
 
     def evaluate_tricks(self):
         pass
