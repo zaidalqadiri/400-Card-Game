@@ -44,23 +44,32 @@ class Player:
     
     def make_bid(self):
         while True:
-            user_input = input(f"input {self.__name}'s bid: ")
+            user_input = int(input(f"input {self.__name}'s bid: "))
 
-            if user_input < '2' or user_input > 13:
+            if user_input < 2 or user_input > 13:
                 print("The minimum bid is 2 and the maximum bid 13")
                 continue
-            elif user_input == '2' and self.__score >= 30:
+            elif user_input == 2 and self.__score >= 30:
                 print("The minimum bid for a score of 30 and above is 3")
                 continue
-            elif user_input == '3' and self.__score >= 40:
+            elif user_input == 3 and self.__score >= 40:
                 print("The minimum bid for a score of 40 and above is 4")
                 continue
             else:
-                self.__bid = int(user_input)
+                self.__bid = user_input
                 break
     
-    def play_card(self, card):
-        pass
+    def play_card(self):
+        while True:
+            user_input = str(input(f"{self.get_name()}'s trun. play a card (e.g. 3 of Spade) or 'r' to reveal your cards: "))
+            if user_input == 'r':
+                print("")
+                print(self.show_hand())
+                continue
+            for card in self.__cards:
+                if str(card).lower() == user_input.lower():
+                    self.__cards.remove(card)
+                    return card
 
     def get_name(self):
         return self.__name
@@ -102,11 +111,15 @@ class Game:
         print("\n--------------\n")
 
 
-    def play_round():
-        pass
+    def play_round(self):
+        print(f"\n{self.__players[0].play_card()} played by {self.__players[0].get_name()}\n")
+        
 
-    def evaluate_tricks():
-        pass 
+    def evaluate_tricks(self):
+        pass
+    
+    def check_scores(self):
+        pass
 
 p1 = Player("Zaid")
 p2 = Player("Zai")
@@ -119,3 +132,4 @@ team2 = Team(p3, p4)
 game = Game(p1, p2, p3, p4, team1, team2)
 game.start_game()
 game.bid_phase()
+game.play_round()
