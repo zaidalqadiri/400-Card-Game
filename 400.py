@@ -39,16 +39,25 @@ class Player:
     def set_hand(self, cards):
         self.__cards = cards
     
-    def make_bid(self, amount):
-        if amount < 2:
-            print("The minimum bid is 2")
-        elif amount == 2 and self.__score >= 30:
-            print("The minimum bid for a score of 30 and above is 3")
-        elif amount == 3 and self.__score >= 40:
-            print("The minimum bid for a score of 40 and above is 4")
-        else:
-            self.__bid = amount
-            return self.__bid
+    def show_hand(self):
+        return f"{self.get_name()}'s hand: {[str(card) for card in self.__cards]}\n"
+    
+    def make_bid(self):
+        while True:
+            user_input = input(f"input {self.__name}'s bid: ")
+
+            if user_input < '2' or user_input > 13:
+                print("The minimum bid is 2 and the maximum bid 13")
+                continue
+            elif user_input == '2' and self.__score >= 30:
+                print("The minimum bid for a score of 30 and above is 3")
+                continue
+            elif user_input == '3' and self.__score >= 40:
+                print("The minimum bid for a score of 40 and above is 4")
+                continue
+            else:
+                self.__bid = int(user_input)
+                break
     
     def play_card(self, card):
         pass
@@ -83,11 +92,30 @@ class Game:
                 cards.append(self.__deck.draw_card())
             player.set_hand(cards)
     
-    def bid_phase():
-        pass
+    def bid_phase(self):
+        print("\nBidding Phase")
+        print("--------------\n")
+
+        for player in self.__players:
+            print(player.show_hand())
+            player.make_bid()
+        print("\n--------------\n")
+
 
     def play_round():
         pass
 
     def evaluate_tricks():
         pass 
+
+p1 = Player("Zaid")
+p2 = Player("Zai")
+p3 = Player("Za")
+p4 = Player("Z")
+
+team1 = Team(p1, p2)
+team2 = Team(p3, p4)
+
+game = Game(p1, p2, p3, p4, team1, team2)
+game.start_game()
+game.bid_phase()
