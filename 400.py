@@ -7,6 +7,14 @@ class Card:
 
     def get_suit(self):
         return self.__suit
+    
+    def get_value(self):
+        rank_order = {
+            '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
+            '7': 7, '8': 8, '9': 9, '10': 10,
+            'J': 11, 'Q': 12, 'K': 13, 'A': 14
+        }
+        return rank_order[str(self.__rank)]
 
     def __str__(self):
         return f"{self.__rank} of {self.__suit}"
@@ -47,7 +55,7 @@ class Player:
     
     def make_bid(self):
         while True:
-            user_input = int(input(f"input {self.__name}'s bid: "))
+            user_input = int(input(f"input {self.__name}'s bid: \n"))
 
             if user_input < 2 or user_input > 13:
                 print("The minimum bid is 2 and the maximum bid 13")
@@ -64,22 +72,25 @@ class Player:
     
     def play_card(self, required_suit = None):
         while True:
-            user_input = str(input(f"{self.get_name()}'s trun. play a card (e.g. 3 of Spade) or 'r' to reveal your cards: "))
-            if user_input == 'r':
-                print("")
-                print(self.show_hand())
-                continue
+            print(self.show_hand())
+            user_input = str(input(f"{self.get_name()}'s turn. Play a card (e.g. 3 of Spade): "))
 
             for card in self.__cards:
                 if str(card).lower() == user_input.lower():
                     if required_suit and card.get_suit() != required_suit and self.has_suit(required_suit):
-                        print(f"You must play a {required_suit} if you have one.")
+                        print(f"\nYou must play a {required_suit} if you have one.\n")
                         return self.play_card(required_suit)  # retry
                     self.__cards.remove(card)
                     return card
 
     def get_name(self):
         return self.__name
+
+    def add_trick(self):
+        self.__tricks += 1
+
+    def get_tricks(self):
+        return self.__tricks
     
     def has_suit(self, suit):
         return any(card.get_suit() == suit for card in self.__cards)
@@ -98,6 +109,7 @@ class Team:
 class Game:
 
     __current_round = 0
+    __starting_index = 0
 
     def __init__(self, player1, player2, player3, player4, team1, team2):
         self.__players = [player1, player2, player3, player4]
@@ -131,27 +143,49 @@ class Game:
         lead_card = order[0].play_card()
         lead_suit = lead_card.get_suit()
         cards_played.append((order[0], lead_card))
-        print(f"{lead_card} played by {order[0].get_name()}")
+        print(f"{lead_card} played by {order[0].get_name()}\n")
 
          # Rest of the players
         for player in order[1:]:
-            card = player.play_card(required_suit=lead_suit)
-            cards_played.append((player, card))
-            print(f"{card} played by {player.get_name()}")
+            player_card = player.play_card(required_suit=lead_suit)
+            cards_played.append((player, player_card))
+            print(f"{player_card} played by {player.get_name()}\n")
 
-        self._current_round += 1
+        self.__current_round += 1
         self.__starting_index = (self.__starting_index + 1) % 4  # Rotate starter for next round
 
-    def evaluate_tricks(self):
+        self.evaluate_tricks(lead_suit, cards_played)
+
+    def evaluate_tricks(self, lead_suit, cards_played):
+        winning_player = None
+        winning_card = None
+        highest_value = -1
+
+        for player, card in cards_played:
+            if card.get_suit() == lead_suit and card.get_value() > highest_value:
+                winning_card = card
+                winning_player = player
+                highest_value = card.get_value()
+
+        winning_player.add_trick()
+        print(f"{winning_card} wins the trick for {winning_player.get_name()}\n")
+        
+        for player in self.__players:
+            print(f"{player.get_name()} has {player.get_tricks()} trick(s)")
+        print("")
+
+        return winning_player
+    
+    def evaluate_round():
         pass
     
     def check_scores(self):
         pass
 
-p1 = Player("Zaid")
-p2 = Player("Zai")
-p3 = Player("Za")
-p4 = Player("Z")
+p1 = Player("Dan")
+p2 = Player("John")
+p3 = Player("Eric")
+p4 = Player("Alex")
 
 team1 = Team(p1, p2)
 team2 = Team(p3, p4)
