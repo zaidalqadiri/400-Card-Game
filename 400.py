@@ -70,6 +70,15 @@ class Player:
                 self.__bid = user_input
                 break
     
+    def get_bid(self):
+        return self.__bid
+
+    def increase_score(self, amount):
+        self.__score += amount
+    
+    def decrease_score(self, amount):
+        self.__score -= amount
+    
     def play_card(self, required_suit = None):
         while True:
             print(self.show_hand())
@@ -94,6 +103,9 @@ class Player:
     
     def has_suit(self, suit):
         return any(card.get_suit() == suit for card in self.__cards)
+    
+    def get_score(self):
+        return self.__score
 
 class Team:
     _team_count = 0
@@ -176,11 +188,22 @@ class Game:
 
         return winning_player
     
-    def evaluate_round():
-        pass
+    def evaluate_game(self):
+        for player in self.__players:
+            player_bid = player.get_bid()
+            player_tricks = player.get_tricks()
+            if player_tricks >= player_bid:
+                if player_bid >= 5:
+                    player.increase_score(player_bid * 2)
+                else:
+                    player.increase_score(player_bid)
+            else:
+                player.decrease_score(player_bid)
+
     
     def check_scores(self):
-        pass
+        for player in self.__players:
+            print(f"{player.get_name()}'s score: {player.get_score()}")
 
 p1 = Player("Dan")
 p2 = Player("John")
@@ -193,4 +216,7 @@ team2 = Team(p3, p4)
 game = Game(p1, p2, p3, p4, team1, team2)
 game.start_game()
 game.bid_phase()
-game.play_round()
+for _ in range(13):
+    game.play_round()
+game.evaluate_game()
+game.check_scores()
