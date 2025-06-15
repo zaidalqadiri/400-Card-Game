@@ -128,10 +128,10 @@ class Game:
         self.__teams = [team1, team2]
         self.__deck = Deck()
 
-    def start_game(self):
+    def deal_cards(self):
         for player in self.__players:
             cards = []
-            for i in range(13):
+            for _ in range(13):
                 cards.append(self.__deck.draw_card())
             player.set_hand(cards)
     
@@ -143,7 +143,16 @@ class Game:
             print(player.show_hand())
             player.make_bid()
         print("\n--------------\n")
+    
+    def valid_bids(self):
+        total_bids = 0
+        for player in self.__players:
+            total_bids += player.get_bid()
 
+        if total_bids < 11:
+            return False
+        
+        return True
 
     def play_round(self):
         print(f"\n --- Round {self.__current_round + 1} ---\n")
@@ -214,8 +223,16 @@ team1 = Team(p1, p2)
 team2 = Team(p3, p4)
 
 game = Game(p1, p2, p3, p4, team1, team2)
-game.start_game()
-game.bid_phase()
+
+while True:
+    game.deal_cards()
+    game.bid_phase()
+    if not game.valid_bids():
+        print("The sum of all players' bids is less than 11. Dealing cards again")
+        continue
+    else:
+        break
+
 for _ in range(13):
     game.play_round()
 game.evaluate_game()
