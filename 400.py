@@ -126,9 +126,10 @@ class Game:
     def __init__(self, player1, player2, player3, player4, team1, team2):
         self.__players = [player1, player2, player3, player4]
         self.__teams = [team1, team2]
-        self.__deck = Deck()
+        self.__deck = None
 
     def deal_cards(self):
+        self.__deck = Deck()
         for player in self.__players:
             cards = []
             for _ in range(13):
@@ -228,7 +229,7 @@ while True:
     game.deal_cards()
     game.bid_phase()
     if not game.valid_bids():
-        print("The sum of all players' bids is less than 11. Dealing cards again")
+        print("***The sum of all players' bids is less than 11. Dealing cards again***")
         continue
     else:
         break
