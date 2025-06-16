@@ -45,13 +45,19 @@ class Player:
         self.__bid = None
         self.__score = 0
         self.__tricks = 0
-        self.__team = None
+        self.__teammate = None
 
     def set_hand(self, cards):
         self.__cards = cards
     
     def show_hand(self):
         return f"{self.get_name()}'s hand: {[str(card) for card in self.__cards]}\n"
+
+    def set_teammate(self, player):
+        self.__teammate = player
+    
+    def get_teammate(self):
+        return self.__teammate
     
     def make_bid(self):
         while True:
@@ -209,11 +215,16 @@ class Game:
                     player.increase_score(player_bid)
             else:
                 player.decrease_score(player_bid)
-
     
-    def check_scores(self):
+    def show_scores(self):
         for player in self.__players:
             print(f"{player.get_name()}'s score: {player.get_score()}")
+    
+    def check_winner(self):
+        for player in self.__players:
+            if player.get_score() >= 41 and player.get_teammate().get_score() >= 0:
+                print(f"{player.get_name()} and {player.get_teammate().get_name()} won")
+                break
 
 p1 = Player("Dan")
 p2 = Player("John")
@@ -221,7 +232,11 @@ p3 = Player("Eric")
 p4 = Player("Alex")
 
 team1 = Team(p1, p2)
+p1.set_teammate(p2)
+p2.set_teammate(p1)
 team2 = Team(p3, p4)
+p3.set_teammate(p4)
+p4.set_teammate(p3)
 
 game = Game(p1, p2, p3, p4, team1, team2)
 
