@@ -61,7 +61,8 @@ class Player:
     
     def make_bid(self):
         while True:
-            user_input = int(input(f"input {self.__name}'s bid: \n"))
+            user_input = int(input(f"input {self.__name}'s bid: "))
+            print("\n\n\n")
 
             if user_input < 2 or user_input > 13:
                 print("The minimum bid is 2 and the maximum bid 13")
@@ -171,13 +172,13 @@ class Game:
         lead_card = order[0].play_card()
         lead_suit = lead_card.get_suit()
         cards_played.append((order[0], lead_card))
-        print(f"{lead_card} played by {order[0].get_name()}\n")
+        print(f"{lead_card} played by {order[0].get_name()}\n\n\n")
 
          # Rest of the players
         for player in order[1:]:
             player_card = player.play_card(required_suit=lead_suit)
             cards_played.append((player, player_card))
-            print(f"{player_card} played by {player.get_name()}\n")
+            print(f"{player_card} played by {player.get_name()}\n\n\n")
 
         self.__current_round += 1
         self.__starting_index = (self.__starting_index + 1) % 4  # Rotate starter for next round
@@ -187,10 +188,19 @@ class Game:
     def evaluate_tricks(self, lead_suit, cards_played):
         winning_player = None
         winning_card = None
-        highest_value = -1
+        highest_value = 0
 
         for player, card in cards_played:
-            if card.get_suit() == lead_suit and card.get_value() > highest_value:
+            suit_played = card.get_suit()
+            if suit_played == lead_suit and card.get_value() > highest_value:
+                winning_card = card
+                winning_player = player
+                highest_value = card.get_value()
+            elif suit_played == "Heart" and winning_card.get_suit() != "Heart":
+                winning_card = card
+                winning_player = player
+                highest_value = card.get_value()
+            elif suit_played == "Heart" and winning_card.get_suit() == "Heart" and card.get_value() > highest_value:
                 winning_card = card
                 winning_player = player
                 highest_value = card.get_value()
@@ -201,8 +211,6 @@ class Game:
         for player in self.__players:
             print(f"{player.get_name()} has {player.get_tricks()} trick(s)")
         print("")
-
-        return winning_player
     
     def evaluate_game(self):
         for player in self.__players:
@@ -252,4 +260,5 @@ while True:
 for _ in range(13):
     game.play_round()
 game.evaluate_game()
-game.check_scores()
+game.show_scores()
+game.check_winner()
