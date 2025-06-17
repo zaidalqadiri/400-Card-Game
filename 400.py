@@ -61,17 +61,21 @@ class Player:
     
     def make_bid(self):
         while True:
-            user_input = int(input(f"input {self.__name}'s bid: "))
-            print("\n\n\n")
+            try:
+                user_input = int(input(f"input {self.__name}'s bid: "))
+                print("\n\n\n")
+            except ValueError:
+                print("Invalid input. Please enter a whole number.\n")
+                continue
 
             if user_input < 2 or user_input > 13:
-                print("The minimum bid is 2 and the maximum bid 13")
+                print("Your bid must be between 2 and 13\n")
                 continue
             elif user_input == 2 and self.__score >= 30:
-                print("The minimum bid for a score of 30 and above is 3")
+                print("The minimum bid for a score of 30 and above is 3\n")
                 continue
             elif user_input == 3 and self.__score >= 40:
-                print("The minimum bid for a score of 40 and above is 4")
+                print("The minimum bid for a score of 40 and above is 4\n")
                 continue
             else:
                 self.__bid = user_input
@@ -186,21 +190,15 @@ class Game:
         self.evaluate_tricks(lead_suit, cards_played)
 
     def evaluate_tricks(self, lead_suit, cards_played):
-        winning_player = None
-        winning_card = None
-        highest_value = 0
+        winning_player = cards_played[0][0]
+        winning_card = cards_played[0][1]
+        highest_value = cards_played[0][1].get_value()
 
-        for player, card in cards_played:
+        for player, card in cards_played[1:]:
             suit_played = card.get_suit()
-            if suit_played == lead_suit and card.get_value() > highest_value:
-                winning_card = card
-                winning_player = player
-                highest_value = card.get_value()
-            elif suit_played == "Heart" and winning_card.get_suit() != "Heart":
-                winning_card = card
-                winning_player = player
-                highest_value = card.get_value()
-            elif suit_played == "Heart" and winning_card.get_suit() == "Heart" and card.get_value() > highest_value:
+            if ((suit_played == lead_suit and winning_card.get_suit() != "Heart" and card.get_value() > highest_value) or 
+            (suit_played == "Heart" and winning_card.get_suit() != "Heart") or 
+            (suit_played == "Heart" and winning_card.get_suit() == "Heart" and card.get_value() > highest_value)):
                 winning_card = card
                 winning_player = player
                 highest_value = card.get_value()
