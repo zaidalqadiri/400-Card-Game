@@ -149,6 +149,7 @@ class Game:
             player.set_hand(cards)
     
     def bid_phase(self):
+        self.deal_cards()
         print("\nBidding Phase")
         print("--------------\n")
 
@@ -156,6 +157,10 @@ class Game:
             print(player.show_hand())
             player.make_bid()
         print("\n--------------\n")
+
+        if not game.valid_bids():
+            print("***The sum of all players' bids is less than 11. Dealing cards again***")
+            self.bid_phase()
     
     def valid_bids(self):
         total_bids = 0
@@ -231,7 +236,8 @@ class Game:
         for player in self.__players:
             if player.get_score() >= 41 and player.get_teammate().get_score() >= 0:
                 print(f"{player.get_name()} and {player.get_teammate().get_name()} won")
-                break
+                return True
+        return False
 
 p1 = Player("Dan")
 p2 = Player("John")
@@ -244,17 +250,10 @@ team2 = Team(p3, p4)
 p3.set_teammate(p4)
 game = Game(p1, p2, p3, p4, team1, team2)
 
-while True:
-    game.deal_cards()
+while not game.check_winner():
     game.bid_phase()
-    if not game.valid_bids():
-        print("***The sum of all players' bids is less than 11. Dealing cards again***")
-        continue
-    else:
-        break
 
-for _ in range(13):
-    game.play_round()
-game.evaluate_game()
-game.show_scores()
-game.check_winner()
+    for _ in range(13):
+        game.play_round()
+    game.evaluate_game()
+    game.show_scores()
