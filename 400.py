@@ -118,6 +118,9 @@ class Player:
     
     def get_score(self):
         return self.__score
+    
+    def reset_tricks(self):
+        self.__tricks = 0
 
 class Team:
     _team_count = 0
@@ -227,12 +230,13 @@ class Game:
                     player.increase_score(player_bid)
             else:
                 player.decrease_score(player_bid)
+            player.reset_tricks()
     
     def show_scores(self):
         for player in self.__players:
             print(f"{player.get_name()}'s score: {player.get_score()}")
     
-    def check_winner(self):
+    def check_game_winner(self):
         for player in self.__players:
             if player.get_score() >= 41 and player.get_teammate().get_score() >= 0:
                 print(f"{player.get_name()} and {player.get_teammate().get_name()} won")
@@ -250,7 +254,7 @@ team2 = Team(p3, p4)
 p3.set_teammate(p4)
 game = Game(p1, p2, p3, p4, team1, team2)
 
-while not game.check_winner():
+while not game.check_game_winner():
     game.bid_phase()
 
     for _ in range(13):
