@@ -231,16 +231,19 @@ class Game:
             else:
                 player.decrease_score(player_bid)
             player.reset_tricks()
+        
+        self.__current_round = 0
     
     def show_scores(self):
+        print("\n\n\n")
         for player in self.__players:
             print(f"{player.get_name()}'s score: {player.get_score()}")
     
     def check_game_winner(self):
         for player in self.__players:
             if player.get_score() >= 41 and player.get_teammate().get_score() >= 0:
-                print(f"{player.get_name()} and {player.get_teammate().get_name()} won")
-                return True
+                print(f"\n\n{player.get_name()} and {player.get_teammate().get_name()} won!")
+                return True 
         return False
 
 p1 = Player("Dan")
