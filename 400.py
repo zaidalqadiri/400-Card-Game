@@ -55,6 +55,7 @@ class Player:
 
     def set_teammate(self, player):
         self.__teammate = player
+        player.__teammate = self
     
     def get_teammate(self):
         return self.__teammate
@@ -239,11 +240,8 @@ p4 = Player("Alex")
 
 team1 = Team(p1, p2)
 p1.set_teammate(p2)
-p2.set_teammate(p1)
 team2 = Team(p3, p4)
 p3.set_teammate(p4)
-p4.set_teammate(p3)
-
 game = Game(p1, p2, p3, p4, team1, team2)
 
 while True:
