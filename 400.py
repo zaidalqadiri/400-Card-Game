@@ -247,17 +247,9 @@ class Game:
         return False
     
 print("Welcome to the 400 card game!\n\n")
-p1_name = input("Input the name of the first player: ")
-p2_name = input("Input the name of the second player: ")
-p3_name = input("Input the name of the third player: ")
-p4_name = input("Input the name of the fourth player: ")
 
-p1 = Player(p1_name)
-p2 = Player(p2_name)
-p3 = Player(p3_name)
-p4 = Player(p4_name)
-
-players = [p1, p2, p3, p4]
+player_names = [input(f"Input the name of player {i+1}: ") for i in range(4)]
+players = [Player(name) for name in player_names]
 
 print("\nSetting up teams...\n")
 
