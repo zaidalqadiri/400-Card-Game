@@ -66,8 +66,9 @@ class Game:
         self.evaluate_tricks(lead_suit, cards_played)
 
     def evaluate_tricks(self, lead_suit, cards_played):
-        winning_player = cards_played[0][0]
-        winning_card = cards_played[0][1]
+        # initialize the winning player and winning card to the player that plays thier card first and highest value to the first card played
+        winning_player = cards_played[0][0]  
+        winning_card = cards_played[0][1] 
         highest_value = cards_played[0][1].get_value()
 
         for player, card in cards_played[1:]:
