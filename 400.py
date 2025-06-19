@@ -245,17 +245,36 @@ class Game:
                 print(f"\n\n{player.get_name()} and {player.get_teammate().get_name()} won!")
                 return True 
         return False
+    
+print("Welcome to the 400 card game!\n\n")
+p1_name = input("Input the name of the first player: ")
+p2_name = input("Input the name of the second player: ")
+p3_name = input("Input the name of the third player: ")
+p4_name = input("Input the name of the fourth player: ")
 
-p1 = Player("Dan")
-p2 = Player("John")
-p3 = Player("Eric")
-p4 = Player("Alex")
+p1 = Player(p1_name)
+p2 = Player(p2_name)
+p3 = Player(p3_name)
+p4 = Player(p4_name)
 
-team1 = Team(p1, p2)
-p1.set_teammate(p2)
-team2 = Team(p3, p4)
-p3.set_teammate(p4)
-game = Game(p1, p2, p3, p4, team1, team2)
+players = [p1, p2, p3, p4]
+
+print("\nSetting up teams...\n")
+
+random_player_1 = random.choice(players)
+players.remove(random_player_1)
+random_player_2 = random.choice(players)
+players.remove(random_player_2)
+random_player_1.set_teammate(random_player_2)
+team1 = Team(random_player_1, random_player_2)
+
+players[0].set_teammate(players[1])
+team2 = Team(players[0], players[1])
+
+print(team1.get_team_info())
+print(team2.get_team_info())
+
+game = Game(random_player_1, random_player_2, players[0], players[1], team1, team2)
 
 while not game.check_game_winner():
     game.bid_phase()
