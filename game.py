@@ -9,6 +9,7 @@ class Game:
         self.__players = [player1, player2, player3, player4]
         self.__teams = [team1, team2]
         self.__deck = None
+        self.__trick_winner = None
 
     def deal_cards(self):
         self.__deck = Deck()
@@ -60,10 +61,10 @@ class Game:
             cards_played.append((player, player_card))
             print(f"{player_card} played by {player.get_name()}\n\n\n")
 
-        self.__current_round += 1
-        self.__starting_index = (self.__starting_index + 1) % 4  # Rotate starter for next round
-
         self.evaluate_tricks(lead_suit, cards_played)
+
+        self.__current_round += 1
+        self.__starting_index = self.__players.index(self.__trick_winner)  
 
     def evaluate_tricks(self, lead_suit, cards_played):
         # initialize the winning player and winning card to the player that plays thier card first and highest value to the first card played
@@ -79,6 +80,8 @@ class Game:
                 winning_card = card
                 winning_player = player
                 highest_value = card.get_value()
+
+        self.__trick_winner = winning_player  # track winner for the start of the next round
 
         winning_player.add_trick()
         print(f"{winning_card} wins the trick for {winning_player.get_name()}\n")
@@ -101,6 +104,7 @@ class Game:
             player.reset_tricks()
         
         self.__current_round = 0
+        self.__starting_index = (self.__starting_index + 1) % 4  # rotate to next starter for next game
     
     def show_scores(self):
         print("\n\n\n")
