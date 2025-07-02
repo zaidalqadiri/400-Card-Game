@@ -8,9 +8,9 @@ A terminal-based simulation of the 400 card game, built with Python using Object
 
 ## Features
 
-- **♠️Full 52-card deck with realistic shuffling
-- **🎯 Bidding system with dynamic rules based on score
-- **💡Enforces players to follow the suit
-- **🏆 Trick evaluation and scoring
-- **🔄 Automatic redeal if total bids < 11
-- **🔁 Rotating turn order: first player changes each round
+- ♠️Full 52-card deck with realistic shuffling
+- 🎯 Bidding system with dynamic rules based on score
+- 💡Enforces players to follow the suit
+- 🏆 Trick evaluation and scoring
+- 🔄 Automatic redeal if total bids < 11
+- 🔁 Rotating turn order: first player changes each round
