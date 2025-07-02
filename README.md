@@ -1,6 +1,6 @@
 # 🃏400 Card Game
 
-A terminal-based simulation of the 400 card game, built with Python using Object-Oriented Programming principles.
+A terminal-based simulation of the traditional Lebanese card game "400", built with Python using Object-Oriented Programming principles.
 
 ## About the Game
 
