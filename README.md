@@ -1,4 +1,4 @@
-# 400 Card game
+# 🃏400 Card game
 
 A terminal-based simulation of the 400 card game, built with Python using Object-Oriented Programming principles.
 
@@ -14,3 +14,13 @@ A terminal-based simulation of the 400 card game, built with Python using Object
 - 🏆 Trick evaluation and scoring
 - 🔄 Automatic redeal if total bids < 11
 - 🔁 Rotating turn order: first player changes each round
+
+## How to Run
+
+Make sure you have Python 3 installed.
+
+```
+git clone https://github.com/yourusername/400-card-game.git
+cd 400-card-game
+python3 400.py
+```
