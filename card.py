@@ -7,7 +7,22 @@ and draw cards.
 import random
 
 class Card:
+    """
+    Represents a playing card with a suit and a rank.
+    
+    Attributes:
+        __suit (str): The suit of the card ('Diamond', 'Heart', 'Spade', 'Club').
+        __rank (Union[int, str]): The rank of the card (2–10, 'J', 'Q', 'K', 'A').
+    """
+    
     def __init__(self, suit, rank):
+        """
+        Initializes a Card with a given suit and rank.
+
+        Args:
+            suit (str): The suit of the card.
+            rank (int | str): The rank of the card.
+        """
         self.__suit = suit
         self.__rank = rank
 
