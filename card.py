@@ -1,3 +1,9 @@
+'''
+This module provides classes to represent a standard deck of playing cards.
+It includes Card and Deck classes with functionality to initialize, shuffle,
+and draw cards.
+'''
+
 import random
 
 class Card:
