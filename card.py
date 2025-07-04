@@ -14,7 +14,7 @@ class Card:
         __suit (str): The suit of the card ('Diamond', 'Heart', 'Spade', 'Club').
         __rank (Union[int, str]): The rank of the card (2–10, 'J', 'Q', 'K', 'A').
     """
-    
+
     def __init__(self, suit, rank):
         """
         Initializes a Card with a given suit and rank.
@@ -27,6 +27,13 @@ class Card:
         self.__rank = rank
 
     def get_suit(self):
+        """
+        Initializes a Card with a given suit and rank.
+
+        Args:
+            suit (str): The suit of the card.
+            rank (int or str): The rank of the card.
+        """
         return self.__suit
     
     def get_value(self):
