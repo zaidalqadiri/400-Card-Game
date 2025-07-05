@@ -1,4 +1,14 @@
 class Team:
+    """
+    Represents a team consisting of two players.
+
+    Class Attributes:
+        _team_count (int): A class-level counter to assign unique team IDs.
+
+    Instance Attributes:
+        __players (list): A list containing two player objects.
+        __team_id (int): Unique identifier for the team.
+    """
     _team_count = 0
 
     def __init__(self, player1, player2):
