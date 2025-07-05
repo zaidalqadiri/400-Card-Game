@@ -22,6 +22,13 @@ class Team:
     _team_count = 0
 
     def __init__(self, player1, player2):
+        """
+        Initializes a Team with two player objects and assigns a unique team ID.
+
+        Args:
+            player1 (Player): The first player in the team.
+            player2 (Player): The second player in the team.
+        """
         self.__players = [player1, player2]
         Team._team_count += 1
         self.__team_id = Team._team_count
