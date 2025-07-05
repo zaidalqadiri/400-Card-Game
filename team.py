@@ -34,4 +34,10 @@ class Team:
         self.__team_id = Team._team_count
     
     def get_team_info(self):
+        """
+        Returns a string representation of the team with player names.
+
+        Returns:
+            str: A string like "Team 1: Alice and Bob".
+        """
         return f"Team {self.__team_id}: {self.__players[0].get_name()} and {self.__players[1].get_name()}"
