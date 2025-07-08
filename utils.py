@@ -1,3 +1,8 @@
+"""
+This module contains a utility function to randomly assign four players into two teams.
+It uses the Team class to group players and sets their teammates accordingly.
+"""
+
 import random
 from team import Team
 
