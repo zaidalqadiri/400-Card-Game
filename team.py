@@ -1,6 +1,4 @@
 """
-team.py
-
 This module defines the Team class used to represent a team of two players 
 in a card game. Each team is assigned a unique team ID upon creation.
 

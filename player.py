@@ -1,3 +1,8 @@
+"""
+This module defines the Player class used in a card game.
+Each player has a name, a hand of cards, a bid, a score, and a teammate.
+"""
+
 class Player:
     def __init__(self, name):
         self.__name = name
