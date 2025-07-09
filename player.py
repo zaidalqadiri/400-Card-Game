@@ -4,6 +4,17 @@ Each player has a name, a hand of cards, a bid, a score, and a teammate.
 """
 
 class Player:
+    """
+    Represents a player in the card game.
+
+    Attributes:
+        __name (str): The name of the player.
+        __cards (list): The cards currently held by the player.
+        __bid (int): The bid made by the player.
+        __score (int): The player's total score.
+        __tricks (int): The number of tricks won by the player.
+        __teammate (Player): The teammate of this player.
+    """
     def __init__(self, name):
         self.__name = name
         self.__cards = []
