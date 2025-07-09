@@ -27,6 +27,12 @@ class Player:
         self.__teammate = None
 
     def set_hand(self, cards):
+        """
+        Sets the player's hand.
+
+        Args:
+            cards (list): A list of Card objects.
+        """
         self.__cards = cards
     
     def show_hand(self):
