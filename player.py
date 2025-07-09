@@ -16,6 +16,9 @@ class Player:
         __teammate (Player): The teammate of this player.
     """
     def __init__(self, name):
+        """
+        Initializes a Player with a name and default values.
+        """
         self.__name = name
         self.__cards = []
         self.__bid = None
