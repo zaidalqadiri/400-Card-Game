@@ -36,6 +36,12 @@ class Player:
         self.__cards = cards
     
     def show_hand(self):
+        """
+        Returns a string representation of the player's hand.
+
+        Returns:
+            str: Formatted string showing all cards in hand.
+        """
         return f"{self.get_name()}'s hand: {[str(card) for card in self.__cards]}\n"
 
     def set_teammate(self, player):
