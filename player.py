@@ -55,6 +55,12 @@ class Player:
         player.__teammate = self
     
     def get_teammate(self):
+        """
+        Returns the teammate of the player.
+
+        Returns:
+            Player: The teammate player object.
+        """
         return self.__teammate
     
     def make_bid(self):
