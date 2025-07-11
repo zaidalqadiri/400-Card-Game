@@ -45,6 +45,12 @@ class Player:
         return f"{self.get_name()}'s hand: {[str(card) for card in self.__cards]}\n"
 
     def set_teammate(self, player):
+        """
+        Sets the teammate for the player.
+
+        Args:
+            player (Player): The teammate to be set.
+        """
         self.__teammate = player
         player.__teammate = self
     
