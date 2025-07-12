@@ -108,6 +108,12 @@ class Player:
         self.__score += amount
     
     def decrease_score(self, amount):
+         """
+        Decreases the player's score.
+
+        Args:
+            amount (int): The number of points to subtract.
+        """
         self.__score -= amount
     
     def play_card(self, required_suit = None):
