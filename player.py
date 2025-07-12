@@ -99,6 +99,12 @@ class Player:
         return self.__bid
 
     def increase_score(self, amount):
+        """
+        Increases the player's score.
+
+        Args:
+            amount (int): The number of points to add.
+        """
         self.__score += amount
     
     def decrease_score(self, amount):
