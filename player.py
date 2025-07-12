@@ -90,6 +90,12 @@ class Player:
                 break
     
     def get_bid(self):
+        """
+        Returns the bid made by the player.
+
+        Returns:
+            int: The bid value.
+        """
         return self.__bid
 
     def increase_score(self, amount):
