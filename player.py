@@ -64,6 +64,10 @@ class Player:
         return self.__teammate
     
     def make_bid(self):
+        """
+        Prompts the user to input a bid value and sets it,
+        with validation based on current score.
+        """
         while True:
             try:
                 user_input = int(input(f"input {self.__name}'s bid: "))
