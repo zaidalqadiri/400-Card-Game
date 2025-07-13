@@ -139,6 +139,13 @@ class Player:
                     return card
 
     def get_name(self):
+        """
+        Returns the name of the player.
+
+        Returns:
+            str: The player's name.
+        """
+
         return self.__name
 
     def add_trick(self):
