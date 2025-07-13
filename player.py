@@ -108,7 +108,7 @@ class Player:
         self.__score += amount
     
     def decrease_score(self, amount):
-         """
+        """
         Decreases the player's score.
 
         Args:
@@ -117,6 +117,15 @@ class Player:
         self.__score -= amount
     
     def play_card(self, required_suit = None):
+        """
+        Prompts the player to play a card, enforcing suit-following rules.
+
+        Args:
+            required_suit (str, optional): The suit that must be followed.
+
+        Returns:
+            Card: The card the player chose to play.
+        """
         while True:
             print(self.show_hand())
             user_input = str(input(f"{self.get_name()}'s turn. Play a card (e.g. 3 of Spade): "))
