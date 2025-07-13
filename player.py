@@ -155,6 +155,12 @@ class Player:
         self.__tricks += 1
 
     def get_tricks(self):
+        """
+        Returns the number of tricks won by the player.
+
+        Returns:
+            int: Trick count.
+        """
         return self.__tricks
     
     def has_suit(self, suit):
