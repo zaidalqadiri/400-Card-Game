@@ -149,6 +149,9 @@ class Player:
         return self.__name
 
     def add_trick(self):
+        """
+        Increments the player's trick count by 1.
+        """
         self.__tricks += 1
 
     def get_tricks(self):
