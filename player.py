@@ -164,6 +164,15 @@ class Player:
         return self.__tricks
     
     def has_suit(self, suit):
+        """
+        Checks if the player has at least one card of the given suit.
+
+        Args:
+            suit (str): The suit to check for.
+
+        Returns:
+            bool: True if the player has a card of the suit, False otherwise.
+        """
         return any(card.get_suit() == suit for card in self.__cards)
     
     def get_score(self):
