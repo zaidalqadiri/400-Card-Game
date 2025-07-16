@@ -176,6 +176,12 @@ class Player:
         return any(card.get_suit() == suit for card in self.__cards)
     
     def get_score(self):
+        """
+        Returns the current score of the player.
+
+        Returns:
+            int: The player's score.
+        """
         return self.__score
     
     def reset_tricks(self):
