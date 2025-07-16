@@ -185,4 +185,7 @@ class Player:
         return self.__score
     
     def reset_tricks(self):
+        """
+        Resets the player's trick count to zero.
+        """
         self.__tricks = 0
