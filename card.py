@@ -60,6 +60,12 @@ class Card:
         return f"{self.__rank} of {self.__suit}"
     
 class Deck:
+    """
+    Represents a standard 52-card deck.
+
+    Attributes:
+        __deck (list[Card]): List of Card objects in the deck.
+    """
     def __init__(self):
         suits = ['Diamond', 'Heart', 'Spade', 'Club']
         ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
