@@ -51,6 +51,12 @@ class Card:
         return rank_order[str(self.__rank)]
 
     def __str__(self):
+        """
+        Returns a string representation of the card.
+
+        Returns:
+            str: A string in the format "Rank of Suit".
+        """
         return f"{self.__rank} of {self.__suit}"
     
 class Deck:
