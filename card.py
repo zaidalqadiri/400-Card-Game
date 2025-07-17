@@ -37,6 +37,12 @@ class Card:
         return self.__suit
     
     def get_value(self):
+        """
+        Returns the numeric value of the card's rank for comparison purposes.
+
+        Returns:
+            int: The numerical value of the card.
+        """
         rank_order = {
             '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
             '7': 7, '8': 8, '9': 9, '10': 10,
