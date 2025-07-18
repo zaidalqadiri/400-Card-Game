@@ -67,6 +67,9 @@ class Deck:
         __deck (list[Card]): List of Card objects in the deck.
     """
     def __init__(self):
+        """
+        Initializes the deck with 52 shuffled cards.
+        """
         suits = ['Diamond', 'Heart', 'Spade', 'Club']
         ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
 
