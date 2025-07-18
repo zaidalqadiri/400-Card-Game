@@ -88,4 +88,13 @@ class Deck:
         random.shuffle(self.__deck)
     
     def draw_card(self):
+        """
+        Removes and returns the top card of the deck.
+
+        Returns:
+            Card: The card drawn from the top of the deck.
+
+        Raises:
+            IndexError: If the deck is empty.
+        """
         return self.__deck.pop()
