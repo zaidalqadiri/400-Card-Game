@@ -82,6 +82,9 @@ class Deck:
         random.shuffle(self.__deck)
 
     def shuffle(self):
+        """
+        Shuffles the deck.
+        """
         random.shuffle(self.__deck)
     
     def draw_card(self):
