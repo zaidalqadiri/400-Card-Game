@@ -1,5 +1,10 @@
-from card import Deck
+"""
+This module defines the Game class which is responsible for the logic and rules of the card game.
+The game consists of bidding phase, playing 13 rounds and scoring evalaution to see who the winner 
+of the round is.
+"""
 
+from card import Deck
 class Game:
 
     __current_round = 0
