@@ -23,6 +23,13 @@ class Game:
     __starting_index = 0
 
     def __init__(self, player1, player2, player3, player4, team1, team2):
+        """
+        Initializes the game with players and teams.
+
+        Args:
+            player1-4: Player instances representing each player.
+            team1-2: Team instances for both teams.
+        """
         self.__players = [player1, player2, player3, player4]
         self.__teams = [team1, team2]
         self.__deck = None
