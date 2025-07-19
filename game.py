@@ -6,7 +6,19 @@ of the round is.
 
 from card import Deck
 class Game:
+    """
+    Manages the logic and rules of the game
 
+    Class Attributes:
+        __current_round (int): Tracks the number of rounds played.
+        __starting_index (int): Index of the player who starts each round.
+
+    Instance Attributes:
+        __players (list): A list of four Player objects.
+        __teams (list): A list of two Team objects.
+        __deck (Deck): The deck used in the current round.
+        __trick_winner (Player): The player who won the last trick.
+    """
     __current_round = 0
     __starting_index = 0
 
