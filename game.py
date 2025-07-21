@@ -80,6 +80,9 @@ class Game:
         return True
 
     def play_round(self):
+        """
+        Plays a single trick (round) of the game, determining a trick winner.
+        """
         print(f"\n --- Round {self.__current_round + 1} ---\n")
 
         order = self.__players[self.__starting_index:] + self.__players[:self.__starting_index]
