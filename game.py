@@ -64,6 +64,12 @@ class Game:
             self.bid_phase()
     
     def valid_bids(self):
+        """
+        Checks if the sum of all players' bids is valid (>= 11).
+
+        Returns:
+            bool: True if total bid is valid, False otherwise.
+        """
         total_bids = 0
         for player in self.__players:
             total_bids += player.get_bid()
