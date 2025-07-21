@@ -36,6 +36,9 @@ class Game:
         self.__trick_winner = None
 
     def deal_cards(self):
+        """
+        Shuffles a new deck and deals 13 cards to each player.
+        """
         self.__deck = Deck()
         for player in self.__players:
             cards = []
