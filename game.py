@@ -47,6 +47,9 @@ class Game:
             player.set_hand(cards)
     
     def bid_phase(self):
+        """
+        Handles the bidding phase, including re-dealing if total bids are too low.
+        """
         self.deal_cards()
         print("\nBidding Phase")
         print("--------------\n")
