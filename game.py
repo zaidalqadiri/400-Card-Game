@@ -156,6 +156,9 @@ class Game:
         self.__starting_index = (self.__starting_index + 1) % 4  # rotate to next starter for next game
     
     def show_scores(self):
+        """
+        Prints the scores of each player
+        """
         print("\n\n\n")
         for player in self.__players:
             print(f"{player.get_name()}'s score: {player.get_score()}")
