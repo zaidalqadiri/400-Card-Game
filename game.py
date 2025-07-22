@@ -106,6 +106,13 @@ class Game:
         self.__starting_index = self.__players.index(self.__trick_winner)  
 
     def evaluate_tricks(self, lead_suit, cards_played):
+        """
+        Evaluates the tricks of all the players to determine who the winner of the round is
+
+        Args:
+            lead_suit: the suit played by player who starts the round
+            cards_played: the cards played by all four players
+        """
         # initialize the winning player and winning card to the player that plays thier card first and highest value to the first card played
         winning_player = cards_played[0][0]  
         winning_card = cards_played[0][1] 
