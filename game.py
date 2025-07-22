@@ -164,6 +164,9 @@ class Game:
             print(f"{player.get_name()}'s score: {player.get_score()}")
     
     def check_game_winner(self):
+        """
+        Checks which team reached 41 points and won the game
+        """
         for player in self.__players:
             if player.get_score() >= 41 and player.get_teammate().get_score() >= 0:
                 print(f"\n\n{player.get_name()} and {player.get_teammate().get_name()} won!")
