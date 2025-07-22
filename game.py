@@ -137,6 +137,9 @@ class Game:
         print("")
     
     def evaluate_game(self):
+        """
+        Evalautes the game to see which players reached the number of tricks they bidded and which players did not
+        """
         for player in self.__players:
             player_bid = player.get_bid()
             player_tricks = player.get_tricks()
